@@ -1,19 +1,22 @@
 class WasRun {
   public wasRun: boolean;
-  public constructor(name) {
+  public method: () => void;
+  public constructor(method: () => void) {
+    this.method = method;
     this.wasRun = false;
   }
 
   public run(): void {
-    this.testMethod();
+    this.method();
   }
 
-  public testMethod(): void {
-    this.wasRun = true;
-  }
+  // public testMethod(): void {
+  //   this.wasRun = true;
+  // }
 }
 
-let test = new WasRun("testMethod");
+// これだと型はあってるからコンパイルは通るが、this.wasRun が更新されない。
+let test = new WasRun(() => { this.wasRun = true; });
 console.log(test.wasRun);
 test.run();
 console.log(test.wasRun);

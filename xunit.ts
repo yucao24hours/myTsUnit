@@ -4,6 +4,10 @@ class WasRun {
     this.wasRun = false;
   }
 
+  public run(): void {
+    this.testMethod();
+  }
+
   public testMethod(): void {
     this.wasRun = true;
   }
@@ -11,5 +15,5 @@ class WasRun {
 
 let test = new WasRun("testMethod");
 console.log(test.wasRun);
-test.testMethod();
+test.run();
 console.log(test.wasRun);

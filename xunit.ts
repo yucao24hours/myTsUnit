@@ -1,22 +1,27 @@
 class WasRun {
   public wasRun: boolean;
   public method: () => void;
-  public constructor(method: () => void) {
-    this.method = method;
+  public constructor() {
     this.wasRun = false;
+  }
+
+  public setMethod(method: () => void): void {
+    this.method = method;
   }
 
   public run(): void {
     this.method();
   }
 
-  // public testMethod(): void {
-  //   this.wasRun = true;
-  // }
+  public testMethod(): void {
+    console.log("testMethod called.");
+    this.wasRun = true;
+  }
 }
 
-// これだと型はあってるからコンパイルは通るが、this.wasRun が更新されない。
-let test = new WasRun(() => { this.wasRun = true; });
+let test = new WasRun();
+// 実行するメソッドを（外から）指定する感じ
+test.setMethod(test.testMethod);
 console.log(test.wasRun);
 test.run();
 console.log(test.wasRun);

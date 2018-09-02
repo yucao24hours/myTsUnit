@@ -1,16 +1,21 @@
-class WasRun {
-  public wasRun: boolean;
+class TestCase {
   public method: () => void;
-  public constructor() {
-    this.wasRun = false;
+  public constructor() {}
+
+  public run(): void {
+    this.method();
   }
 
   public setMethod(method: () => void): void {
     this.method = method;
   }
+}
 
-  public run(): void {
-    this.method();
+class WasRun extends TestCase {
+  public wasRun: boolean;
+  public constructor() {
+    super();
+    this.wasRun = false;
   }
 
   public testMethod(): void {

@@ -24,12 +24,7 @@ class WasRun extends TestCase {
   }
 }
 
-class TestCaseTest {
-  private _method: () => void;
-  set method(method: () => void) {
-    this._method = method;
-  }
-
+class TestCaseTest extends TestCase {
   public testRunning(): void {
     let test = new WasRun();
     // 実行するメソッドを（外から）指定する感じ
@@ -42,4 +37,4 @@ class TestCaseTest {
 
 let testCaseTest = new TestCaseTest();
 testCaseTest.method = testCaseTest.testRunning;
-testCaseTest.method();
+testCaseTest.run();

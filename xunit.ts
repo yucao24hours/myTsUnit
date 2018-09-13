@@ -29,9 +29,15 @@ class TestCaseTest extends TestCase {
     let test = new WasRun();
     // 実行するメソッドを（外から）指定する感じ
     test.method = test.testMethod;
-    console.log(test.wasRun);
+    assert(!test.wasRun);
     test.run();
-    console.log(test.wasRun);
+    assert(test.wasRun);
+  }
+}
+
+function assert(result: boolean): void {
+  if (!result) {
+    throw "Test failed.";
   }
 }
 

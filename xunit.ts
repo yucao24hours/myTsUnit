@@ -2,7 +2,12 @@ class TestCase {
   private _method: () => void;
   public constructor() {}
 
+  public setUp(): void {
+    // 何もしない
+  }
+
   public run(): void {
+    this.setUp();
     this._method();
   }
 
@@ -17,6 +22,12 @@ class WasRun extends TestCase {
   public constructor() {
     super();
     this.wasRun = false;
+    this.wasSetUp = false;
+  }
+
+  public setUp(): void {
+    console.log("setUp called!");
+    this.wasSetUp = true;
   }
 
   public testMethod(): void {
@@ -26,12 +37,19 @@ class WasRun extends TestCase {
 }
 
 class TestCaseTest extends TestCase {
+  public test: WasRun;
+  public constructor() {
+    super();
+    this.test = new WasRun();
+  }
+
+  public setUp(): void {
+    this.test.method = this.test.testMethod;
+  }
+
   public testRunning(): void {
-    let test = new WasRun();
-    test.method = test.testMethod;
-    assert(!test.wasRun);
-    test.run();
-    assert(test.wasRun);
+    this.test.run();
+    assert(this.test.wasRun);
   }
 
   public testSetUp(): void {

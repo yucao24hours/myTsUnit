@@ -52,5 +52,5 @@ testCaseTest1.method = testCaseTest1.testRunning;
 testCaseTest1.run();
 
 let testCaseTest2 = new TestCaseTest();
-testCaseTest2.method = testCaseTest2.testRunning;
+testCaseTest2.method = testCaseTest2.testSetUp;
 testCaseTest2.run();

@@ -27,11 +27,16 @@ class WasRun extends TestCase {
 class TestCaseTest extends TestCase {
   public testRunning(): void {
     let test = new WasRun();
-    // 実行するメソッドを（外から）指定する感じ
     test.method = test.testMethod;
     assert(!test.wasRun);
     test.run();
     assert(test.wasRun);
+  }
+
+  public testSetUp(): void {
+    let test = new WasRun();
+    test.run();
+    assert(test.wasSetUp);
   }
 }
 
@@ -43,4 +48,7 @@ function assert(result: boolean): void {
 
 let testCaseTest = new TestCaseTest();
 testCaseTest.method = testCaseTest.testRunning;
+testCaseTest.run();
+
+testCaseTest.method = testCaseTest.testSetUp;
 testCaseTest.run();

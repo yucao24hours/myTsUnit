@@ -47,9 +47,10 @@ function assert(result: boolean): void {
   }
 }
 
-let testCaseTest = new TestCaseTest();
-testCaseTest.method = testCaseTest.testRunning;
-testCaseTest.run();
+let testCaseTest1 = new TestCaseTest();
+testCaseTest1.method = testCaseTest1.testRunning;
+testCaseTest1.run();
 
-testCaseTest.method = testCaseTest.testSetUp;
-testCaseTest.run();
+let testCaseTest2 = new TestCaseTest();
+testCaseTest2.method = testCaseTest2.testRunning;
+testCaseTest2.run();

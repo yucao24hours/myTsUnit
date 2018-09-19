@@ -13,6 +13,7 @@ class TestCase {
 
 class WasRun extends TestCase {
   public wasRun: boolean;
+  public wasSetUp: boolean;
   public constructor() {
     super();
     this.wasRun = false;

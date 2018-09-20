@@ -54,9 +54,8 @@ class TestCaseTest extends TestCase {
   }
 
   public testSetUp(): void {
-    let test = new WasRun();
-    test.run();
-    assert(test.wasSetUp);
+    this.test.run();
+    assert(this.test.wasSetUp);
   }
 }
 

@@ -1,0 +1,15 @@
+{
+  "name": "mytsunit",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "xunit.js",
+  "dependencies": {},
+  "devDependencies": {
+    "source-map-support": "^0.5.9"
+  },
+  "scripts": {
+    "test": "node -r source-map-support/register xunit.js"
+  },
+  "author": ""
+}

@@ -4,6 +4,7 @@ class TestCase {
 
   public setUp(): void {
     // 何もしない
+    // 理由: インタフェースの提供と、デフォルトの実装の提供のため
   }
 
   public run(): void {

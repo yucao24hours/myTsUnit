@@ -55,9 +55,10 @@ class TestCaseTest extends TestCase {
     assert(this.test.wasRun);
   }
 
+  // setUp が実行されたことを確認するテストケース
   public testSetUp(): void {
     this.test.run();
-    assert(this.test.wasSetUp);
+    assert("setUp" == this.test.log);
   }
 }
 

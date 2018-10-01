@@ -7,9 +7,15 @@ class TestCase {
     // 理由: インタフェースの提供と、デフォルトの実装の提供のため
   }
 
+  public tearDown(): void {
+    // 何もしない
+    // 理由: インタフェースの提供と、デフォルトの実装の提供のため
+  }
+
   public run(): void {
     this.setUp();
     this._method();
+    this.tearDown();
   }
 
   set method(method: () => void) {
@@ -33,6 +39,10 @@ class WasRun extends TestCase {
     console.log("testMethod called!");
     this.log = this.log + "testMethod "
   }
+
+  public tearDown(): void {
+    this.log = this.log + "tearDown "
+  }
 }
 
 class TestCaseTest extends TestCase {
@@ -44,7 +54,7 @@ class TestCaseTest extends TestCase {
     let test = new WasRun();
     test.method = test.testMethod;
     test.run();
-    assert("setUp testMethod " == test.log);
+    assert("setUp testMethod tearDown " == test.log);
   }
 }
 

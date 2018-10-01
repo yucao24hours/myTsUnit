@@ -20,10 +20,12 @@ class TestCase {
 class WasRun extends TestCase {
   public wasRun: boolean;
   public wasSetUp: boolean;
+  public log: string;
   public constructor() {
     super();
     this.wasRun = false;
     this.wasSetUp = false;
+    this.log = "setUp";
   }
 
   public setUp(): void {

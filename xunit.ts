@@ -49,13 +49,8 @@ class TestCaseTest extends TestCase {
     this.test.method = this.test.testMethod;
   }
 
-  public testRunning(): void {
-    this.test.run();
-    assert(this.test.wasRun);
-  }
-
   // setUp が実行されたことを確認するテストケース
-  public testSetUp(): void {
+  public testTemplateMethod(): void {
     this.test.run();
     assert("setUp testMethod " == this.test.log);
   }
@@ -67,10 +62,6 @@ function assert(result: boolean): void {
   }
 }
 
-let testCaseTest1 = new TestCaseTest();
-testCaseTest1.method = testCaseTest1.testRunning;
-testCaseTest1.run();
-
 let testCaseTest2 = new TestCaseTest();
-testCaseTest2.method = testCaseTest2.testSetUp;
+testCaseTest2.method = testCaseTest2.testTemplateMethod;
 testCaseTest2.run();

@@ -40,7 +40,6 @@ class TestCaseTest extends TestCase {
     super();
   }
 
-  // setUp が実行されたことを確認するテストケース
   public testTemplateMethod(): void {
     let test = new WasRun();
     test.method = test.testMethod;

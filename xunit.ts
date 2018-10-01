@@ -23,18 +23,18 @@ class WasRun extends TestCase {
   public constructor() {
     super();
     this.wasRun = false;
-    this.wasSetUp = false;
-    this.log = "setUp";
+    this.log = "setUp ";
   }
 
   public setUp(): void {
     console.log("setUp called!");
-    this.wasSetUp = true;
+    this.log = "setUp "
   }
 
   public testMethod(): void {
     console.log("testMethod called!");
     this.wasRun = true;
+    this.log = this.log + "testMethod "
   }
 }
 
@@ -57,7 +57,7 @@ class TestCaseTest extends TestCase {
   // setUp が実行されたことを確認するテストケース
   public testSetUp(): void {
     this.test.run();
-    assert("setUp" == this.test.log);
+    assert("setUp testMethod " == this.test.log);
   }
 }
 

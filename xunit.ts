@@ -18,11 +18,9 @@ class TestCase {
 }
 
 class WasRun extends TestCase {
-  public wasRun: boolean;
   public log: string;
   public constructor() {
     super();
-    this.wasRun = false;
     this.log = "setUp ";
   }
 
@@ -33,7 +31,6 @@ class WasRun extends TestCase {
 
   public testMethod(): void {
     console.log("testMethod called!");
-    this.wasRun = true;
     this.log = this.log + "testMethod "
   }
 }

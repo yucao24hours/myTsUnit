@@ -36,20 +36,16 @@ class WasRun extends TestCase {
 }
 
 class TestCaseTest extends TestCase {
-  public test: WasRun;
   public constructor() {
     super();
-    this.test = new WasRun();
-  }
-
-  public setUp(): void {
-    this.test.method = this.test.testMethod;
   }
 
   // setUp が実行されたことを確認するテストケース
   public testTemplateMethod(): void {
-    this.test.run();
-    assert("setUp testMethod " == this.test.log);
+    let test = new WasRun();
+    test.method = test.testMethod;
+    test.run();
+    assert("setUp testMethod " == test.log);
   }
 }
 

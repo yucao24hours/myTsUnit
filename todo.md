@@ -2,7 +2,7 @@
 - [x] https://github.com/yucao24hours/myTsUnit/blob/01cafd19f8202203a1c6c556a968d571782a8830/xunit.ts#L2 は public ではまずいので private にする
   - `setMethod()` の代わりに Accessors(get/set) を使ってもスッキリ書ける https://www.typescriptlang.org/docs/handbook/classes.html
 - [x] setUp を最初に呼び出す
-- [ ] tearDown を後で呼び出す
+- [x] tearDown を後で呼び出す
 - [ ] テストメソッドが失敗したとしても tearDown を呼び出す
 - [ ] 複数のテストを走らせる
 - [ ] 収集したテスト結果を出力する

@@ -34,12 +34,10 @@ class WasRun extends TestCase {
   }
 
   public setUp(): void {
-    console.log("setUp called!");
     this.log = "setUp "
   }
 
   public testMethod(): void {
-    console.log("testMethod called!");
     this.log = this.log + "testMethod "
   }
 

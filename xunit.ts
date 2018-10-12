@@ -16,7 +16,12 @@ class TestCase {
     let result = new TestResult();
     result.testStarted();
     this.setUp();
-    this._method();
+    try {
+      this._method();
+    }
+    catch(e) {
+      result.testFailed();
+    }
     this.tearDown();
     return result;
   }
@@ -123,22 +128,18 @@ function assert(result: boolean): void {
   }
 }
 
-console.log("test 1");
 let testCaseTest1 = new TestCaseTest();
 testCaseTest1.method = testCaseTest1.testTemplateMethod;
-testCaseTest1.run();
+console.log(testCaseTest1.run().summary());
 
-console.log("test 2");
 let testCaseTest2 = new TestCaseTest();
 testCaseTest2.method = testCaseTest2.testResult;
-testCaseTest2.run();
+console.log(testCaseTest2.run().summary());
 
-// console.log("test 3");
-// let testCaseTest3 = new TestCaseTest();
-// testCaseTest3.method = testCaseTest3.testFailedResult;
-// testCaseTest3.run();
+let testCaseTest3 = new TestCaseTest();
+testCaseTest3.method = testCaseTest3.testFailedResult;
+console.log(testCaseTest3.run().summary());
 
-console.log("test 4");
 let testCaseTest4 = new TestCaseTest();
 testCaseTest4.method = testCaseTest4.testFailedResultFormatting;
-testCaseTest4.run();
+console.log(testCaseTest4.run().summary());

@@ -13,10 +13,12 @@ class TestCase {
   }
 
   public run(): TestResult {
+    let result = new TestResult();
+    result.testStarted();
     this.setUp();
     this._method();
     this.tearDown();
-    return new TestResult();
+    return result;
   }
 
   set method(method: () => void) {
@@ -74,8 +76,16 @@ class TestCaseTest extends TestCase {
 }
 
 class TestResult {
+  private runCount: number;
+  constructor() {
+    this.runCount = 0;
+  }
+
+  public testStarted(): void {
+    this.runCount = this.runCount + 1;
+  }
   public summary(): string {
-    return "1 run, 0 failed";
+    return `${this.runCount} run, 0 failed`;
   }
 }
 

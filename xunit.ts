@@ -12,10 +12,11 @@ class TestCase {
     // 理由: インタフェースの提供と、デフォルトの実装の提供のため
   }
 
-  public run(): void {
+  public run(): TestResult {
     this.setUp();
     this._method();
     this.tearDown();
+    return new TestResult();
   }
 
   set method(method: () => void) {
@@ -50,11 +51,31 @@ class TestCaseTest extends TestCase {
     super();
   }
 
+  // NOTE: テンプレートメソッドパターンに則って、テストが期待した順序で呼ばれていることを
+  //       確認するテストケース
   public testTemplateMethod(): void {
     let test = new WasRun();
     test.method = test.testMethod;
+
     test.run();
+
     assert("setUp testMethod tearDown " == test.log);
+  }
+
+  // NOTE: 結果の文言が返されることを確認するテストケース
+  public testResult(): void {
+    let test = new WasRun();
+    test.method = test.testMethod;
+
+    let result = test.run();
+
+    assert("1 run, 0 failed" == result.summary());
+  }
+}
+
+class TestResult {
+  public summary(): string {
+    return "1 run, 0 failed";
   }
 }
 
@@ -64,6 +85,12 @@ function assert(result: boolean): void {
   }
 }
 
+console.log("test 1");
 let testCaseTest1 = new TestCaseTest();
 testCaseTest1.method = testCaseTest1.testTemplateMethod;
 testCaseTest1.run();
+
+console.log("test 2");
+let testCaseTest2 = new TestCaseTest();
+testCaseTest2.method = testCaseTest2.testResult;
+testCaseTest2.run();

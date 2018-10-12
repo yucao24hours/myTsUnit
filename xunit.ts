@@ -84,19 +84,36 @@ class TestCaseTest extends TestCase {
     let result = test.run();
     assert("1 run, 1 failed" == result.summary());
   }
+
+  // NOTE: testFailed が呼ばれたときに期待通りに failed の数が出力されるのを
+  //       確認するテストケース
+  public testFailedResultFormatting(): void {
+    let result = new TestResult();
+    result.testStarted();
+    result.testFailed();
+
+    assert("1 run, 1 failed" == result.summary());
+  }
 }
 
 class TestResult {
   private runCount: number;
+  private errorCount: number;
   constructor() {
     this.runCount = 0;
+    this.errorCount = 0;
   }
 
   public testStarted(): void {
     this.runCount = this.runCount + 1;
   }
+
+  public testFailed(): void {
+    this.errorCount = this.errorCount + 1;
+  }
+
   public summary(): string {
-    return `${this.runCount} run, 0 failed`;
+    return `${this.runCount} run, ${this.errorCount} failed`;
   }
 }
 
@@ -116,7 +133,12 @@ let testCaseTest2 = new TestCaseTest();
 testCaseTest2.method = testCaseTest2.testResult;
 testCaseTest2.run();
 
-console.log("test 3");
-let testCaseTest3 = new TestCaseTest();
-testCaseTest3.method = testCaseTest3.testFailedResult;
+// console.log("test 3");
+// let testCaseTest3 = new TestCaseTest();
+// testCaseTest3.method = testCaseTest3.testFailedResult;
 // testCaseTest3.run();
+
+console.log("test 4");
+let testCaseTest4 = new TestCaseTest();
+testCaseTest4.method = testCaseTest4.testFailedResultFormatting;
+testCaseTest4.run();

@@ -44,6 +44,10 @@ class WasRun extends TestCase {
   public tearDown(): void {
     this.log = this.log + "tearDown "
   }
+
+  public testBrokenMethod(): void {
+    throw "Test was broken intentionally.";
+  }
 }
 
 class TestCaseTest extends TestCase {
@@ -62,7 +66,7 @@ class TestCaseTest extends TestCase {
     assert("setUp testMethod tearDown " == test.log);
   }
 
-  // NOTE: 結果の文言が返されることを確認するテストケース
+  // NOTE: テストが成功したときの結果文言を確認するテストケース
   public testResult(): void {
     let test = new WasRun();
     test.method = test.testMethod;
@@ -70,6 +74,15 @@ class TestCaseTest extends TestCase {
     let result = test.run();
 
     assert("1 run, 0 failed" == result.summary());
+  }
+
+  // NOTE: テストが失敗したときの結果文言を確認するテストケース
+  public testFailedResult(): void {
+    let test = new WasRun();
+    test.method = test.testMethod;
+
+    let result = test.run();
+    assert("1 run, 1 failed" == result.summary());
   }
 }
 
@@ -102,3 +115,8 @@ console.log("test 2");
 let testCaseTest2 = new TestCaseTest();
 testCaseTest2.method = testCaseTest2.testResult;
 testCaseTest2.run();
+
+console.log("test 3");
+let testCaseTest3 = new TestCaseTest();
+testCaseTest3.method = testCaseTest3.testFailedResult;
+// testCaseTest3.run();

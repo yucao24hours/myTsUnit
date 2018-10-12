@@ -64,6 +64,6 @@ function assert(result: boolean): void {
   }
 }
 
-let testCaseTest2 = new TestCaseTest();
-testCaseTest2.method = testCaseTest2.testTemplateMethod;
-testCaseTest2.run();
+let testCaseTest1 = new TestCaseTest();
+testCaseTest1.method = testCaseTest1.testTemplateMethod;
+testCaseTest1.run();

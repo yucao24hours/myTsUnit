@@ -12,8 +12,7 @@ class TestCase {
     // 理由: インタフェースの提供と、デフォルトの実装の提供のため
   }
 
-  public run(): TestResult {
-    let result = new TestResult();
+  public run(result: TestResult): TestResult {
     result.testStarted();
     this.setUp();
     try {
@@ -55,9 +54,41 @@ class WasRun extends TestCase {
   }
 }
 
+class TestSuite {
+  private tests: WasRun[];
+
+  public add(wasRun: WasRun): void {
+    this.tests.push(wasRun);
+  }
+
+  public run(result: TestResult): void {
+    for(let test of this.tests) {
+      test.run(result);
+    }
+  }
+}
+
 class TestCaseTest extends TestCase {
   public constructor() {
     super();
+  }
+
+  // NOTE: 一連のテストがまとめて実行できていることを確認するテストケース
+  public testSuite(): void {
+    let suite = new TestSuite();
+
+    let test1 = new WasRun();
+    test1.method = test1.testMethod;
+    suite.add(test1);
+
+    let test2 = new WasRun();
+    test2.method = test2.testBrokenMethod;
+    suite.add(test2);
+
+    let result = new TestResult();
+    suite.run(result);
+
+    assert("2 runl 1 failed" == result.summary());
   }
 
   // NOTE: テンプレートメソッドパターンに則って、テストが期待した順序で呼ばれていることを
@@ -143,3 +174,7 @@ console.log(testCaseTest3.run().summary());
 let testCaseTest4 = new TestCaseTest();
 testCaseTest4.method = testCaseTest4.testFailedResultFormatting;
 console.log(testCaseTest4.run().summary());
+
+let testCaseTest5 = new TestCaseTest();
+testCaseTest5.method = testCaseTest5.testSuite;
+console.log(testCaseTest5.run().summary());

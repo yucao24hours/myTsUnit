@@ -12,7 +12,7 @@ class TestCase {
     // 理由: インタフェースの提供と、デフォルトの実装の提供のため
   }
 
-  public run(result: TestResult): TestResult {
+  public run(result: TestResult): void {
     result.testStarted();
     this.setUp();
     try {
@@ -22,7 +22,6 @@ class TestCase {
       result.testFailed();
     }
     this.tearDown();
-    return result;
   }
 
   set method(method: () => void) {
@@ -159,9 +158,9 @@ function assert(result: boolean): void {
   }
 }
 
-let testCaseTest1 = new TestCaseTest();
-testCaseTest1.method = testCaseTest1.testTemplateMethod;
-console.log(testCaseTest1.run().summary());
+// let testCaseTest1 = new TestCaseTest();
+// testCaseTest1.method = testCaseTest1.testTemplateMethod;
+// console.log(testCaseTest1.run().summary());
 
 let testCaseTest2 = new TestCaseTest();
 testCaseTest2.method = testCaseTest2.testResult;
@@ -178,3 +177,15 @@ console.log(testCaseTest4.run().summary());
 let testCaseTest5 = new TestCaseTest();
 testCaseTest5.method = testCaseTest5.testSuite;
 console.log(testCaseTest5.run().summary());
+
+
+
+
+
+let suite = new TestSuite();
+
+let testCaseTest1 = new TestCaseTest();
+testCaseTest1.method = testCaseTest1.testTemplateMethod;
+// ↓これ定義が違うからできなくない？
+suite.add(testCaseTest1);
+

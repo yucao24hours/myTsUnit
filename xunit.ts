@@ -54,10 +54,10 @@ class WasRun extends TestCase {
 }
 
 class TestSuite {
-  private tests: WasRun[];
+  private tests: TestCase[];
 
-  public add(wasRun: WasRun): void {
-    this.tests.push(wasRun);
+  public add(testCase: TestCase): void {
+    this.tests.push(testCase);
   }
 
   public run(result: TestResult): void {
@@ -186,6 +186,4 @@ let suite = new TestSuite();
 
 let testCaseTest1 = new TestCaseTest();
 testCaseTest1.method = testCaseTest1.testTemplateMethod;
-// ↓これ定義が違うからできなくない？
 suite.add(testCaseTest1);
-

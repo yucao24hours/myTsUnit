@@ -162,21 +162,21 @@ function assert(result: boolean): void {
 // testCaseTest1.method = testCaseTest1.testTemplateMethod;
 // console.log(testCaseTest1.run().summary());
 
-let testCaseTest2 = new TestCaseTest();
-testCaseTest2.method = testCaseTest2.testResult;
-console.log(testCaseTest2.run().summary());
-
-let testCaseTest3 = new TestCaseTest();
-testCaseTest3.method = testCaseTest3.testFailedResult;
-console.log(testCaseTest3.run().summary());
-
-let testCaseTest4 = new TestCaseTest();
-testCaseTest4.method = testCaseTest4.testFailedResultFormatting;
-console.log(testCaseTest4.run().summary());
-
-let testCaseTest5 = new TestCaseTest();
-testCaseTest5.method = testCaseTest5.testSuite;
-console.log(testCaseTest5.run().summary());
+// let testCaseTest2 = new TestCaseTest();
+// testCaseTest2.method = testCaseTest2.testResult;
+// console.log(testCaseTest2.run().summary());
+//
+// let testCaseTest3 = new TestCaseTest();
+// testCaseTest3.method = testCaseTest3.testFailedResult;
+// console.log(testCaseTest3.run().summary());
+//
+// let testCaseTest4 = new TestCaseTest();
+// testCaseTest4.method = testCaseTest4.testFailedResultFormatting;
+// console.log(testCaseTest4.run().summary());
+//
+// let testCaseTest5 = new TestCaseTest();
+// testCaseTest5.method = testCaseTest5.testSuite;
+// console.log(testCaseTest5.run().summary());
 
 
 
